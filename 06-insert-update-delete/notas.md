@@ -78,3 +78,39 @@ SET price = 10000;
 
 Todos.
 
+Bloque 06 — Parte 3: DELETE
+
+DELETE es una instrucción DML que permite eliminar filas de una tabla.
+
+DELETE FROM products
+WHERE id = 2;
+
+2. El peligro de DELETE sin WHERE
+
+DELETE FROM products;
+
+Esta sentencia intentaría eliminar todas las filas de la tabla.
+
+Parte 4 — RETURNING
+
+PostgreSQL permite utilizar RETURNING para obtener información de las filas afectadas por operaciones DML.
+
+DELETE FROM products
+WHERE id = 2
+RETURNING id, name;
+
+Si existe el producto, PostgreSQL lo elimina y devuelve su identificador y nombre.
+
+También podemos usar RETURNING con INSERT:
+
+INSERT INTO products (name)
+VALUES ('Teclado')
+RETURNING id, name;
+
+Y con UPDATE:
+
+UPDATE products
+SET name = 'Teclado mecánico'
+WHERE id = 1
+RETURNING id, name;
+
